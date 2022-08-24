@@ -9,15 +9,18 @@ export const userdata=(state=initialData,action)=>{
         const {id,data}= action.payload
 
         return {
-            ...state,
+            ...state.list,
             list:[
-                ...state.list,
+                
                 {
                     Id:id,
-                    Data:data
+                    data
                 }
 
             ]
         }
+
+         default :
+            return "404"
     }
 }

@@ -2,8 +2,10 @@ import React from 'react'
 import { Button, Stepper, Step, StepLabel, Typography, TextField, Paper } from '@mui/material'
 import { useState } from 'react'
 import { useForm, FormProvider, useFormContext, Controller } from 'react-hook-form';
-
 import { Container, Box } from '@mui/material'
+import { insertdata } from '../action';
+import { useDispatch } from 'react-redux/es/exports';
+import { WindowTwoTone } from '@mui/icons-material';
 
 
 
@@ -442,6 +444,8 @@ function Main() {
 
     const [activestep, setActivestep] = useState(0)
     const [udata, setData] = useState();
+
+    const dispatch=useDispatch()
     
 
 
@@ -478,10 +482,13 @@ function Main() {
         if (activestep === step.length - 2) {
             console.log(data)
             setData(data)
-           
+            dispatch(insertdata(data)) 
         }
+        
         setActivestep(activestep + 1)
     }
+
+    
 
 
 
@@ -509,6 +516,7 @@ function Main() {
                 activestep === 5 ?
                     <>
                         <Typography variant="h2" align='center' color={"green"} > Submitted Successfully!!!</Typography>
+                        
                     </>
 
 
@@ -531,8 +539,10 @@ function Main() {
 
 
                     )
+                    
 
             }
+            
 
         </>
     )
